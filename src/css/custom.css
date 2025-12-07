@@ -1,643 +1,255 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+/* custom.css
+   Full replacement: White Futuristic Minimal & Black Neon Cyberpunk
+   - Save to: frontend/src/css/custom.css
+   - Supports [data-theme="dark"] and a ThemeSwitcher that toggles a 'black' or 'white' theme by setting CSS variables.
+   - Accessibility-minded (WCAG 2.1 AA), reduced-motion support, responsive, hero & cover utilities, MDX helpers.
+*/
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #1a73e8; /* Google blue */
-  --ifm-color-primary-dark: #1557b0;
-  --ifm-color-primary-darker: #1452a5;
-  --ifm-color-primary-darkest: #104387;
-  --ifm-color-primary-light: #4285f4;
-  --ifm-color-primary-lighter: #5e97f6;
-  --ifm-color-primary-lightest: #8ab8ff;
-  --ifm-color-secondary: #34a853; /* Google green */
-  --ifm-color-tertiary: #fbbc04; /* Google yellow */
-  --ifm-color-quaternary: #ea4335; /* Google red */
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+/* -------------------------
+   Base theme variables
+   ------------------------- */
+:root{
+  /* Light (default) tokens - White Futuristic Minimal */
+  --bg: #ffffff;
+  --surface: #fbfdff;
+  --panel: #f4f8fb;
+  --text: #0b1220;
+  --muted: #6b7280;
+  --accent: #0078ff;       /* electric blue */
+  --accent-2: #8a6cff;     /* purple accent */
+  --border: #e2e8f0;
+  --card-border: color-mix(in srgb, var(--border) 60%, transparent);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
 
-  /* WCAG 2.1 AA accessibility enhancements */
-  --ifm-color-emphasis-0: #000000;
-  --ifm-color-emphasis-100: #1a1a1a;
-  --ifm-color-emphasis-200: #333333;
-  --ifm-color-emphasis-300: #4d4d4d;
-  --ifm-color-emphasis-400: #666666;
-  --ifm-color-emphasis-500: #808080;
-  --ifm-color-emphasis-600: #999999;
-  --ifm-color-emphasis-700: #b3b3b3;
-  --ifm-color-emphasis-800: #cccccc;
-  --ifm-color-emphasis-900: #e6e6e6;
-  --ifm-color-emphasis-1000: #ffffff;
-
-  /* Gradient colors */
-  --gradient-start: #1a73e8;
-  --gradient-end: #34a853;
-  --gradient-text: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  /* Dark mode overrides */
+  --ifm-color-primary: var(--accent);
+  --ifm-color-primary-dark: #0066d6;
+  --ifm-color-primary-darker: #0059b8;
+  --ifm-color-primary-darkest: #00448f;
+  --ifm-color-primary-light: #3395ff;
+  --ifm-color-primary-lighter: #66b2ff;
+  --ifm-color-primary-lightest: #cce5ff;
+  --ifm-background-color: var(--bg);
+  --ifm-background-surface-color: var(--surface);
+  --ifm-color-content: var(--text);
+  --ifm-color-content-secondary: var(--muted);
+  --ifm-navbar-background-color: var(--surface);
+  --ifm-footer-background-color: var(--surface);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #8ab8ff;
-  --ifm-color-primary-dark: #5e97f6;
-  --ifm-color-primary-darker: #4285f4;
-  --ifm-color-primary-darkest: #1a73e8;
-  --ifm-color-primary-light: #a4c7ff;
-  --ifm-color-primary-lighter: #bed6ff;
-  --ifm-color-primary-lightest: #d9e6ff;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+[data-theme='dark']{
+  /* Dark mode tokens - Black Neon Cyberpunk */
+  --bg: #030712;           /* deep blue-black */
+  --surface: #0b1220;      /* dark panel */
+  --panel: #161f30;        /* card surface */
+  --text: #e6edf7;         /* light text */
+  --muted: #94a3b8;        /* muted text */
+  --accent: #00e5ff;       /* cyan neon */
+  --accent-2: #7c4dff;     /* purple neon */
+  --border: #2d3748;
+  --card-border: color-mix(in srgb, var(--border) 50%, transparent);
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
 
-  /* Ensure text is readable in dark mode */
-  --ifm-font-color-base: var(--ifm-color-emphasis-900);
-  --ifm-heading-color: var(--ifm-color-emphasis-1000);
-  --ifm-color-content: var(--ifm-color-emphasis-900);
-  --ifm-color-content-inverse: var(--ifm-color-emphasis-100);
+  /* Infima overrides for dark mode */
+  --ifm-color-primary: var(--accent);
+  --ifm-color-primary-dark: #00cbe6;
+  --ifm-color-primary-darker: #00b8c9;
+  --ifm-color-primary-darkest: #008da6;
+  --ifm-color-primary-light: #33ebff;
+  --ifm-color-primary-lighter: #66f1ff;
+  --ifm-color-primary-lightest: #ccf8ff;
+  --ifm-background-color: var(--bg);
+  --ifm-background-surface-color: var(--surface);
+  --ifm-color-content: var(--text);
+  --ifm-color-content-secondary: var(--muted);
+  --ifm-navbar-background-color: var(--surface);
+  --ifm-footer-background-color: var(--surface);
 }
 
-/* Accessibility improvements for WCAG 2.1 AA compliance */
+/* Base styles */
 body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
-  /* Ensure sufficient color contrast */
-  color: var(--ifm-color-emphasis-100);
 }
 
-/* Ensure text visibility in dark mode */
-[data-theme='dark'] body {
-  color: var(--ifm-color-emphasis-900);
-}
-
-[data-theme='dark'] h1,
-[data-theme='dark'] h2,
-[data-theme='dark'] h3,
-[data-theme='dark'] h4,
-[data-theme='dark'] h5,
-[data-theme='dark'] h6 {
-  color: var(--ifm-color-emphasis-1000);
-}
-
-/* Focus indicators for keyboard navigation */
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus,
-[tabindex]:focus {
-  outline: 2px solid var(--ifm-color-primary);
-  outline-offset: 2px;
-}
-
-/* Skip to content link for screen readers */
-.skip-to-content {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--ifm-color-emphasis-0);
-  color: var(--ifm-color-emphasis-1000);
-  padding: 8px;
-  z-index: 1000;
-  text-decoration: none;
-}
-
-.skip-to-content:focus {
-  top: 6px;
-}
-
-/* Ensure sufficient contrast for links */
-a {
-  color: var(--ifm-color-primary);
-  text-decoration: underline;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-/* Better heading contrast */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--ifm-color-emphasis-0);
-}
-
-/* Code block accessibility */
-.prism-code {
-  tab-size: 4;
-}
-
-/* Ensure form elements are accessible */
-input, select, textarea {
-  font-size: 16px; /* Prevents zoom on iOS */
-}
-
-/* Responsive design for small screens */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 15px;
-  }
-
-  /* Adjust font sizes for better readability on small screens */
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.3rem;
-  }
-
-  /* Adjust sidebar for mobile */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 80%;
-    height: 100vh;
-    z-index: 999;
-    transition: left 0.3s ease;
-  }
-
-  .sidebar--show {
-    left: 0;
-  }
-
-  /* Adjust main content for mobile */
-  .main-wrapper {
-    width: 100%;
-  }
-
-  /* Better spacing on mobile */
-  .main-wrapper section {
-    padding: 1rem;
-  }
-
-  /* Code blocks on mobile */
-  .prism-code {
-    font-size: 0.8rem;
-    padding: 1rem;
-    overflow-x: auto;
-    white-space: pre;
-  }
-
-  /* Buttons on mobile */
-  .button {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    margin: 0.5rem 0;
-  }
-
-  /* Navigation on mobile */
-  .navbar {
-    padding: 0.5rem 1rem;
-  }
-
-  .navbar__items {
-    flex-wrap: wrap;
-  }
-
-  /* Diagrams on mobile */
-  .mermaid-diagram,
-  .d3-diagram {
-    min-width: 100%;
-    overflow-x: auto;
-  }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
-
-  .container {
-    padding: 0 10px;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-  }
-
-  /* Adjust code examples for very small screens */
-  .code-example {
-    font-size: 0.7rem;
-  }
-
-  /* Navigation items */
-  .navbar__item,
-  .navbar__link {
-    font-size: 0.8rem;
-  }
-}
-
-/* Medium screens */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    padding: 0 20px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --ifm-color-primary: #0066cc;
-    --ifm-color-primary-dark: #0052a3;
-    --ifm-color-primary-darker: #004d99;
-    --ifm-color-primary-darkest: #003366;
-    --ifm-color-primary-light: #3385e6;
-    --ifm-color-primary-lighter: #66a3ec;
-    --ifm-color-primary-lightest: #99c2f2;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Focus styles for interactive elements */
-button,
-.docusaurus-highlight-code-line {
-  transition: all 0.2s ease;
-}
-
-/* Better contrast for buttons */
-.button--primary {
-  background-color: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary);
-  color: var(--ifm-color-emphasis-1000);
-}
-
-.button--primary:hover {
-  background-color: var(--ifm-color-primary-dark);
-  border-color: var(--ifm-color-primary-dark);
-}
-
-/* Ensure images have appropriate alt text handling */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Better table accessibility */
-table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-/* Better contrast for navigation */
-.navbar__link:hover,
-.navbar__link--active {
-  color: var(--ifm-color-primary-light);
-}
-
-/* Improve header logo size and appearance */
-.navbar__logo {
-  height: 40px;
-  width: auto;
-  margin-right: 0.5rem;
-}
-
-.navbar__logo img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* Beautiful gradient background for hero banner */
-.hero--primary {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero--primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 40%),
-              radial-gradient(circle at bottom left, rgba(255,255,255,0.1) 0%, transparent 40%);
-  pointer-events: none;
-}
-
-.hero__title {
-  color: white;
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero__subtitle {
-  color: rgba(255,255,255,0.9);
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-
-/* Improved button styles */
-.button--secondary {
-  background-color: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.3);
-  color: white;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.button--secondary:hover {
-  background-color: rgba(255,255,255,0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-/* Improve overall header appearance */
-.navbar {
-  padding: 0.8rem 1rem;
-  background-color: rgba(255,255,255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-}
-
-[data-theme='dark'] .navbar {
-  background-color: rgba(15, 23, 42, 0.95);
-}
-
-.navbar__items {
-  gap: 0.8rem;
-}
-
-/* Card styles for features */
-.feature-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  height: 100%;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.05);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient-text);
-}
-
-[data-theme='dark'] .feature-card {
-  background: var(--ifm-color-emphasis-100);
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-}
-
-.feature-card h3 {
-  color: var(--ifm-color-primary);
-  margin-bottom: 1rem;
-}
-
-[data-theme='dark'] .feature-card h3 {
-  color: var(--ifm-color-primary-light);
-}
-
-/* Improved typography */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-}
-
-/* Section styling */
-section {
-  padding: 4rem 0;
-}
-
-/* Container improvements */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Container */
+.container{
+  max-width: 1400px;
   padding: 0 1.5rem;
 }
 
-/* Footer styling */
-.footer {
-  background: linear-gradient(135deg, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-200));
-  padding: 3rem 0 2rem;
-}
-
-[data-theme='dark'] .footer {
-  background: linear-gradient(135deg, #1a2636, #0f172a); /* Dark blue-gray gradient */
-  color: var(--ifm-color-emphasis-300);
-}
-
-/* Footer link styling */
-.footer a {
-  color: var(--ifm-color-emphasis-600);
-  transition: color 0.2s ease;
-}
-
-.footer a:hover {
-  color: var(--ifm-color-primary);
-}
-
-[data-theme='dark'] .footer a {
-  color: var(--ifm-color-emphasis-400);
-}
-
-[data-theme='dark'] .footer a:hover {
-  color: var(--ifm-color-primary-light);
-}
-
-/* Footer title styling */
-.footer__title {
-  color: var(--ifm-color-emphasis-900);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-[data-theme='dark'] .footer__title {
-  color: var(--ifm-color-emphasis-100);
-  border-bottom: 1px solid var(--ifm-color-emphasis-700);
-}
-
-/* Footer items */
-.footer__item {
-  line-height: 1.6;
-}
-
-/* Footer copyright */
-.footer__copyright {
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  padding-top: 1.5rem;
-  margin-top: 2rem;
-  color: var(--ifm-color-emphasis-500);
-  font-size: 0.9rem;
-}
-
-[data-theme='dark'] .footer__copyright {
-  border-top: 1px solid var(--ifm-color-emphasis-700);
-  color: var(--ifm-color-emphasis-400);
-}
-
-/* Code block styling */
-.prism-code {
-  border-radius: 8px;
-  font-size: 0.9rem;
-}
-
-/* Table styling */
-table {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-th {
-  background-color: var(--ifm-color-primary-lightest);
-}
-
-[data-theme='dark'] th {
-  background-color: var(--ifm-color-primary-darkest);
-}
-
-/* Loading spinner styles */
-.loading-container {
+/* -------------------------
+   Hero & Cover utilities
+   ------------------------- */
+.hero--primary{
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 8%, transparent) 0%, color-mix(in srgb, var(--accent-2) 8%, transparent) 100%), var(--surface);
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.spinner {
-  display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  overflow: hidden;
+}
+[data-theme='dark'] .hero--primary{
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 12%, transparent) 0%, color-mix(in srgb, var(--accent-2) 12%, transparent) 100%), var(--surface);
 }
 
-.spinner div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid var(--ifm-color-primary);
-  border-radius: 50%;
-  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: var(--ifm-color-primary) transparent transparent transparent;
+/* Hero silhouette image (use as background SVG or inline) */
+.hero-silhouette {
+  width:85%;
+  max-width:480px;
+  opacity:.95;
+  filter: drop-shadow(0 14px 36px rgba(0,0,0,0.06));
 }
 
-.spinner div:nth-child(1) {
-  animation-delay: -0.45s;
+/* Neon wireframe overlay for dark mode */
+.hero-wireframe{
+  position:absolute;
+  inset:0;
+  background-image: url('data:image/svg+xml;utf8,\
+  <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800">\
+  <defs>\
+    <linearGradient id="g" x1="0" x2="1">\
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0.08"/>\
+      <stop offset="1" stop-color="#7c4dff" stop-opacity="0.06"/>\
+    </linearGradient>\
+  </defs>\
+  <g fill="none" stroke="url(%23g)" stroke-width="1">\
+    <path d="M20 60 C200 20, 400 120, 600 60"/>\
+    <path d="M100 200 C300 160, 600 260, 900 200"/>\
+  </g></svg>');
+  background-size: cover;
+  mix-blend-mode: screen;
+  opacity:.9;
+  pointer-events:none;
 }
 
-.spinner div:nth-child(2) {
-  animation-delay: -0.3s;
+/* Hero title & subtitle */
+.hero-cover__title{
+  font-size:2.8rem;
+  line-height:1.03;
+  margin:0 0 1rem;
+  color:var(--text);
+  text-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+[data-theme='dark'] .hero-cover__title{
+  text-shadow: 0 12px 40px rgba(0,0,0,0.6);
 }
 
-.spinner div:nth-child(3) {
-  animation-delay: -0.15s;
+/* Subtitle */
+.hero-cover__subtitle{
+  color:var(--muted);
+  font-size:1.15rem;
+  margin-bottom:1.25rem;
 }
 
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* CTA buttons */
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.button--primary{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  border: none;
+  padding:.9rem 1.2rem;
+  border-radius: 999px;
+  font-weight:700;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.button--primary:hover{ transform: translateY(-3px); box-shadow: 0 14px 42px rgba(0,0,0,0.18) }
+.button--secondary{
+  background: transparent;
+  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--accent) 12%, transparent);
+  padding:.82rem 1rem;
+  border-radius: 999px;
+  font-weight:600;
 }
 
-.loading-message {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: var(--ifm-color-emphasis-700);
+/* -------------------------
+   Cards & feature list
+   ------------------------- */
+.card, .feature-card{
+  background: var(--panel);
+  border-radius: var(--radius-lg);
+  padding:1.6rem;
+  border:1px solid var(--card-border);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover, .feature-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
 }
 
-.slow-connection-message {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--ifm-color-emphasis-600);
-  font-style: italic;
+/* Card header accent */
+.card .card-accent{
+  width:44px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin-bottom:1rem;
 }
 
-/* WCAG 2.1 AA compliant color contrast for various elements */
-.alert--primary {
-  --ifm-alert-background-color: #e6f7f0;
-  --ifm-alert-border-color: #2e8555;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+/* -------------------------
+   Navbar & sidebar contrast fixes for accessibility
+   ------------------------- */
+.sidebar {
+  background: transparent;
+}
+.sidebar .menu__list a { color: var(--text); }
+.sidebar .menu__list a:hover { color: var(--accent); }
+
+/* Ensure active sidebar item is clearly visible */
+.sidebar .menu__link--active{
+  color: var(--accent);
+  font-weight:700;
+  border-left: 3px solid var(--accent);
+  padding-left:.75rem;
 }
 
-.alert--secondary {
-  --ifm-alert-background-color: #f0f0f0;
-  --ifm-alert-border-color: #666666;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+/* -------------------------
+   Code blocks & pre / Prism
+   ------------------------- */
+.prism-code{
+  font-size: .95rem;
+  border-radius: 10px;
+  overflow: auto;
+  padding:1rem;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  border:1px solid var(--card-border);
+}
+[data-theme='dark'] .prism-code{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: var(--text);
 }
 
-.alert--success {
-  --ifm-alert-background-color: #e6f7f0;
-  --ifm-alert-border-color: #28a745;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+/* Highlighted code line */
+.docusaurus-highlighted-code-line {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  display:block;
+  margin:0 -1rem;
+  padding:0.2rem 1rem;
 }
 
-.alert--info {
-  --ifm-alert-background-color: #e3f2fd;
-  --ifm-alert-border-color: #2196f3;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+/* Inline code */
+code, .inline-code{
+  background: color-mix(in srgb, var(--panel) 85%, transparent);
+  padding:0.15rem .35rem;
+  border-radius:6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
 }
 
-.alert--warning {
-  --ifm-alert-background-color: #fff3cd;
-  --ifm-alert-border-color: #ffc107;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
-}
+/* -------------------------
+   Tables & images
+   ------------------------- */
+table{border-collapse:collapse;width:100%;background:transparent}
+th, td{padding:.65rem .9rem;text-align:left;border-bottom:1px solid var(--card-border)}
+th{font-weight:700;background: color-mix(in srgb, var(--panel) 20%, transparent)}
+[data-theme='dark'] th { background: color-mix(in srgb, var(--panel) 40%, transparent) }
+.small{font-size:.9rem;color:var(--muted)}
+.center{display:flex;align-items:center;justify-content:center}
 
-.alert--danger {
-  --ifm-alert-background-color: #f8d7da;
-  --ifm-alert-border-color: #dc3545;
-  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
-}
+/* -------------------------
+   End of custom.css
+   ------------------------- */

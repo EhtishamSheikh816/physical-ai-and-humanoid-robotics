@@ -14,7 +14,8 @@
       "Bash(git push -u origin 001-physical-ai-textbook)",
       "Bash(npm start)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Enhance UI with beautiful design and improved styling\n\n- Updated color scheme with modern gradient colors (blue/green)\n- Improved homepage layout with gradient backgrounds and animations\n- Enhanced feature cards with hover effects and better styling\n- Added beautiful hero section with gradient background and animations\n- Improved typography and spacing throughout the site\n- Enhanced dark mode support with matching colors\n- Updated navigation with glassmorphism effect\n- Improved accessibility with better contrast ratios\n- Updated GitHub links to point to correct repository\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push origin 001-physical-ai-textbook)"
+      "Bash(git push origin 001-physical-ai-textbook)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Update footer styling with improved dark mode colors\n\n- Changed dark mode footer to use a dark blue-gray gradient (#1a2636 to #0f172a)\n- Enhanced footer link styling for better contrast in dark mode\n- Improved footer title and copyright styling\n- Added proper hover effects for links in both light and dark modes\n- Updated button text in homepage for consistency\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
