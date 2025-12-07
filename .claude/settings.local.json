@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install --save-dev markdownlint-cli)",
+      "Bash(npm install --save-dev @axe-core/react)",
+      "Bash(npm run build)",
+      "Bash(npm run clear)",
+      "Bash(grep -l \"details\" docs/chapters/*.mdx)",
+      "Bash(ls -la docs/chapters/*.bak)",
+      "Bash(taskkill //f //pid 5492)",
+      "Bash(git add .)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

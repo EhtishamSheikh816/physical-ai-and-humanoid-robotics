@@ -1,0 +1,226 @@
+---
+title: Humanoid Locomotion
+sidebar_position: 9
+description: Understanding walking algorithms and locomotion patterns for humanoid robots
+---
+
+# Humanoid Locomotion
+
+## Introduction
+
+Humanoid locomotion is one of the most complex challenges in robotics, requiring the coordination of multiple systems to achieve stable and efficient walking. This chapter explores various approaches to humanoid locomotion, including walking pattern generation, gait control, and practical implementation strategies in ROS 2. Understanding locomotion is essential for creating mobile humanoid robots that can navigate real-world environments.
+
+## Key Concepts
+
+- **Gait**: The pattern of movement during walking
+- **Walking Pattern Generation**: Algorithms to generate stable walking trajectories
+- **Footstep Planning**: Determining where and when to place feet
+- **Dynamic Walking**: Walking that involves dynamic balance rather than static stability
+- **Gait Phases**: Different phases of the walking cycle (stance, swing, double support)
+
+## Locomotion Architecture
+
+Humanoid locomotion systems typically involve:
+
+1. **Trajectory Generation**: Creating smooth trajectories for the robot's center of mass
+2. **Footstep Planning**: Determining optimal foot placement locations
+3. **Joint Control**: Coordinating joint movements to execute the walking pattern
+4. **Balance Control**: Maintaining stability during locomotion
+5. **Adaptive Control**: Adjusting to terrain variations and disturbances
+
+## Code Example
+
+import CodeExample from '@site/src/components/code-examples/Example';
+
+<CodeExample
+  title="Walking Pattern Generator"
+  language="python"
+  code={`import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float64MultiArray
+from geometry_msgs.msg import Point
+import numpy as np
+
+class WalkingPatternGenerator(Node):
+
+    def __init__(self):
+        super().__init__('walking_pattern_generator')
+        self.trajectory_publisher = self.create_publisher(
+            Float64MultiArray, 'walking_trajectory', 10)
+        self.footstep_publisher = self.create_publisher(
+            Point, 'next_footstep', 10)
+
+        self.step_length = 0.3  # meters
+        self.step_width = 0.2   # meters (distance between feet)
+        self.step_height = 0.05 # meters (clearance during swing phase)
+        self.step_time = 1.0    # seconds per step
+        self.current_step = 0
+        self.robot_x = 0.0
+        self.robot_y = 0.0
+        self.left_support = True  # Start with left foot support
+
+        self.timer = self.create_timer(0.01, self.generate_trajectory)
+
+    def generate_trajectory(self):
+        # Generate walking trajectory based on current step
+        trajectory = Float64MultiArray()
+
+        # Simplified walking pattern - in practice this would use
+        # more sophisticated algorithms like ZMP-based walking
+        time_in_step = (self.get_clock().now().nanoseconds / 1e9) % self.step_time
+
+        # Calculate target positions for feet
+        if self.left_support:
+            # Right foot is swinging forward
+            right_foot_x = self.robot_x + self.step_length * (time_in_step / self.step_time)
+            right_foot_y = self.robot_y + self.step_width
+            left_foot_x = self.robot_x
+            left_foot_y = self.robot_y - self.step_width
+        else:
+            # Left foot is swinging forward
+            left_foot_x = self.robot_x + self.step_length * (time_in_step / self.step_time)
+            left_foot_y = self.robot_y - self.step_width
+            right_foot_x = self.robot_x
+            right_foot_y = self.robot_y + self.step_width
+
+        # Add to trajectory message
+        trajectory.data = [
+            left_foot_x, left_foot_y, 0.0,   # Left foot position
+            right_foot_x, right_foot_y, 0.0, # Right foot position
+            self.robot_x, self.robot_y, 0.7   # Approximate CoM height
+        ]
+
+        self.trajectory_publisher.publish(trajectory)
+
+        # Switch support foot when step is complete
+        if time_in_step > self.step_time - 0.01:
+            self.left_support = not self.left_support
+            self.robot_x += self.step_length  # Move forward
+
+def main():
+    rclpy.init()
+    walking_generator = WalkingPatternGenerator()
+    rclpy.spin(walking_generator)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()`}
+  description="This example demonstrates a basic walking pattern generator for humanoid robots."
+/>
+
+## Inverse Kinematics for Walking
+
+<CodeExample
+  title="Walking Inverse Kinematics"
+  language="python"
+  code={`import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+
+class WalkingIKController(Node):
+
+    def __init__(self):
+        super().__init__('walking_ik_controller')
+        self.joint_publisher = self.create_publisher(
+            Float64MultiArray, 'joint_commands', 10)
+
+        # Simple 6-DOF leg model (hip, knee, ankle)
+        self.hip_length = 0.4
+        self.shin_length = 0.4
+        self.foot_length = 0.1
+
+    def leg_ik_2d(self, x, y):
+        """2D inverse kinematics for a simple leg model"""
+        # Calculate distance to target
+        distance = np.sqrt(x*x + y*y)
+
+        # Check if target is reachable
+        if distance > (self.hip_length + self.shin_length):
+            # Target too far, extend leg fully
+            ratio = (self.hip_length + self.shin_length) / distance
+            x *= ratio
+            y *= ratio
+            distance = self.hip_length + self.shin_length
+
+        # Calculate knee angle using law of cosines
+        cos_knee = (self.hip_length**2 + self.shin_length**2 - distance**2) / (2 * self.hip_length * self.shin_length)
+        knee_angle = np.pi - np.arccos(np.clip(cos_knee, -1, 1))
+
+        # Calculate hip angles
+        hip_angle1 = np.arctan2(y, x)
+        cos_hip2 = (self.hip_length**2 + distance**2 - self.shin_length**2) / (2 * self.hip_length * distance)
+        hip_angle2 = np.arccos(np.clip(cos_hip2, -1, 1))
+        hip_angle = hip_angle1 - hip_angle2
+
+        return hip_angle, knee_angle
+
+    def calculate_walking_joints(self, left_foot, right_foot, com_pos):
+        """Calculate joint angles for walking based on foot positions"""
+        joint_commands = Float64MultiArray()
+
+        # Calculate left leg joint angles
+        left_hip, left_knee = self.leg_ik_2d(
+            left_foot[0] - com_pos[0],
+            left_foot[1] - com_pos[1] + self.hip_length  # Account for hip height
+        )
+
+        # Calculate right leg joint angles
+        right_hip, right_knee = self.leg_ik_2d(
+            right_foot[0] - com_pos[0],
+            right_foot[1] - com_pos[1] + self.hip_length
+        )
+
+        # Pack joint commands (simplified - would include more joints in practice)
+        joint_commands.data = [
+            left_hip, left_knee, 0.0,  # Left leg (hip, knee, ankle)
+            right_hip, right_knee, 0.0, # Right leg (hip, knee, ankle)
+            0.0, 0.0, 0.0, 0.0  # Torso and arm adjustments
+        ]
+
+        return joint_commands
+
+def main():
+    rclpy.init()
+    walking_ik = WalkingIKController()
+    rclpy.spin(walking_ik)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()`}
+  description="This example shows how to implement inverse kinematics for humanoid walking."
+/>
+
+## Walking Algorithms
+
+Common walking algorithms for humanoid robots include:
+
+- **ZMP-based Walking**: Maintaining the Zero Moment Point within the support polygon
+- **Preview Control**: Using future reference trajectories for stable walking
+- **Cart-Table Model**: Simplified model for generating CoM trajectories
+- **Divergent Component of Motion (DCM)**: Advanced control for dynamic walking
+
+## Practical Applications in Humanoid Robotics
+
+Locomotion is essential for:
+
+- **Navigation**: Moving through environments to reach goals
+- **Terrain Adaptation**: Adjusting gait for different surfaces
+- **Obstacle Avoidance**: Planning steps around obstacles
+- **Dynamic Environments**: Adapting to moving obstacles or changing conditions
+
+## Best Practices
+
+1. **Smooth Transitions**: Ensure smooth transitions between walking phases
+2. **Stability Margins**: Maintain stability during all phases of walking
+3. **Terrain Awareness**: Adapt gait based on terrain characteristics
+4. **Energy Efficiency**: Optimize walking patterns for energy efficiency
+
+## Summary
+
+Humanoid locomotion requires sophisticated algorithms to achieve stable and efficient walking. Understanding walking pattern generation, inverse kinematics, and balance control is essential for creating mobile humanoid robots.
+
+## Next Steps
+
+- [Previous Chapter](./balance-control.mdx)
+- [Next Chapter](./capstone-project.mdx)

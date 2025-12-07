@@ -1,0 +1,176 @@
+---
+title: ROS 2 Actions
+sidebar_position: 5
+description: Understanding ROS 2 actions for long-running tasks in humanoid robotics
+---
+
+# ROS 2 Actions
+
+## Introduction
+
+ROS 2 actions provide a communication pattern for long-running tasks that require feedback and goal management. Unlike services which are synchronous, and topics which are asynchronous, actions combine both approaches. They are ideal for humanoid robotics tasks such as navigation, manipulation, and complex behaviors that take time to complete and require monitoring.
+
+## Key Concepts
+
+- **Action Server**: Manages goals, provides feedback, and returns results
+- **Action Client**: Sends goals, receives feedback, and gets results
+- **Goal**: A request for a long-running task
+- **Feedback**: Periodic updates on the progress of a goal
+- **Result**: The final outcome of a completed goal
+
+## Action Architecture
+
+Actions in ROS 2 follow a three-part communication pattern:
+
+1. **Goal**: Client sends a goal request to the server
+2. **Feedback**: Server provides periodic updates on progress
+3. **Result**: Server returns the final outcome when the goal completes
+
+This pattern is perfect for humanoid robotics operations like:
+- Navigation to a specific location
+- Grasping and manipulation tasks
+- Complex behavior execution
+- Trajectory following
+
+## Code Example
+
+import CodeExample from '@site/src/components/code-examples/Example';
+
+<CodeExample
+  title="Simple Action Server"
+  language="python"
+  code={`import time
+import rclpy
+from rclpy.action import ActionServer
+from rclpy.node import Node
+from example_interfaces.action import Fibonacci
+
+class FibonacciActionServer(Node):
+
+    def __init__(self):
+        super().__init__('fibonacci_action_server')
+        self._action_server = ActionServer(
+            self,
+            Fibonacci,
+            'fibonacci',
+            self.execute_callback)
+
+    def execute_callback(self, goal_handle):
+        self.get_logger().info('Executing goal...')
+
+        feedback_msg = Fibonacci.Feedback()
+        feedback_msg.sequence = [0, 1]
+
+        for i in range(1, goal_handle.request.order):
+            if goal_handle.is_cancel_requested:
+                goal_handle.canceled()
+                self.get_logger().info('Goal canceled')
+                return Fibonacci.Result()
+
+            feedback_msg.sequence.append(
+                feedback_msg.sequence[i] + feedback_msg.sequence[i-1])
+
+            goal_handle.publish_feedback(feedback_msg)
+            time.sleep(1)
+
+        goal_handle.succeed()
+        result = Fibonacci.Result()
+        result.sequence = feedback_msg.sequence
+        self.get_logger().info('Goal succeeded')
+        return result
+
+def main():
+    rclpy.init()
+    fibonacci_action_server = FibonacciActionServer()
+    rclpy.spin(fibonacci_action_server)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()`}
+  description="This example demonstrates how to create a simple action server that generates a Fibonacci sequence."
+/>
+
+## Action Client Implementation
+
+<CodeExample
+  title="Action Client"
+  language="python"
+  code={`import rclpy
+from rclpy.action import ActionClient
+from rclpy.node import Node
+from example_interfaces.action import Fibonacci
+
+class FibonacciActionClient(Node):
+
+    def __init__(self):
+        super().__init__('fibonacci_action_client')
+        self._action_client = ActionClient(
+            self,
+            Fibonacci,
+            'fibonacci')
+
+    def send_goal(self, order):
+        goal_msg = Fibonacci.Goal()
+        goal_msg.order = order
+
+        self._action_client.wait_for_server()
+        self._send_goal_future = self._action_client.send_goal_async(
+            goal_msg,
+            feedback_callback=self.feedback_callback)
+
+        self._send_goal_future.add_done_callback(self.goal_response_callback)
+
+    def goal_response_callback(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().info('Goal rejected')
+            return
+
+        self.get_logger().info('Goal accepted')
+        self._get_result_future = goal_handle.get_result_async()
+        self._get_result_future.add_done_callback(self.get_result_callback)
+
+    def feedback_callback(self, feedback_msg):
+        self.get_logger().info(
+            'Received feedback: {0}'.format(feedback_msg.feedback.sequence))
+
+    def get_result_callback(self, future):
+        result = future.result().result
+        self.get_logger().info('Result: {0}'.format(result.sequence))
+        rclpy.shutdown()
+
+def main():
+    rclpy.init()
+    action_client = FibonacciActionClient()
+    action_client.send_goal(10)
+    rclpy.spin(action_client)
+
+if __name__ == '__main__':
+    main()`}
+  description="This example shows how to create an action client that sends a goal to the action server."
+/>
+
+## Practical Applications in Humanoid Robotics
+
+Actions are particularly useful in humanoid robotics for:
+
+- **Navigation**: Moving to specific locations with feedback on progress
+- **Manipulation**: Grasping objects with feedback on grasp success
+- **Walking**: Executing walking patterns with balance feedback
+- **Behavior Execution**: Running complex behaviors with status updates
+
+## Best Practices
+
+1. **Goal Management**: Properly handle goal acceptance, execution, and cancellation
+2. **Feedback Frequency**: Provide regular feedback without overwhelming the system
+3. **Error Handling**: Handle action failures gracefully and provide meaningful error results
+4. **Resource Management**: Clean up action handles to prevent resource leaks
+
+## Summary
+
+ROS 2 actions provide a robust communication pattern for long-running tasks in humanoid robotics. They combine the benefits of both services and topics, making them ideal for tasks that require monitoring and feedback.
+
+## Next Steps
+
+- [Previous Chapter](./ros2-services.mdx)
+- [Next Chapter](./gazebo-simulation.mdx)

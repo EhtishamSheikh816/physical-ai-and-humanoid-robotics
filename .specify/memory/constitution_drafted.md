@@ -1,15 +1,3 @@
-<!--
-SYNC IMPACT REPORT
-Version change: N/A (initial creation) → 1.0.0
-List of modified principles: N/A (initial creation)
-Added sections: All principles and sections (initial creation)
-Removed sections: N/A
-Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ reviewed - constitution check section will work with new principles
-  - .specify/templates/spec-template.md ✅ reviewed - no direct dependencies on constitution
-  - .specify/templates/tasks-template.md ✅ reviewed - no direct dependencies on constitution
-Follow-up TODOs: None
--->
 # AI/Spec-Driven Book Creation using Docusaurus & GitHub Pages Constitution
 
 ## Core Principles

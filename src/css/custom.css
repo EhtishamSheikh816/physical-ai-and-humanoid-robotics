@@ -1,0 +1,434 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* WCAG 2.1 AA accessibility enhancements */
+  --ifm-color-emphasis-0: #000000;
+  --ifm-color-emphasis-100: #1a1a1a;
+  --ifm-color-emphasis-200: #333333;
+  --ifm-color-emphasis-300: #4d4d4d;
+  --ifm-color-emphasis-400: #666666;
+  --ifm-color-emphasis-500: #808080;
+  --ifm-color-emphasis-600: #999999;
+  --ifm-color-emphasis-700: #b3b3b3;
+  --ifm-color-emphasis-800: #cccccc;
+  --ifm-color-emphasis-900: #e6e6e6;
+  --ifm-color-emphasis-1000: #ffffff;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Ensure text is readable in dark mode */
+  --ifm-font-color-base: var(--ifm-color-emphasis-900);
+  --ifm-heading-color: var(--ifm-color-emphasis-1000);
+  --ifm-color-content: var(--ifm-color-emphasis-900);
+  --ifm-color-content-inverse: var(--ifm-color-emphasis-100);
+}
+
+/* Accessibility improvements for WCAG 2.1 AA compliance */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  /* Ensure sufficient color contrast */
+  color: var(--ifm-color-emphasis-100);
+}
+
+/* Ensure text visibility in dark mode */
+[data-theme='dark'] body {
+  color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+  color: var(--ifm-color-emphasis-1000);
+}
+
+/* Focus indicators for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Skip to content link for screen readers */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--ifm-color-emphasis-0);
+  color: var(--ifm-color-emphasis-1000);
+  padding: 8px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  top: 6px;
+}
+
+/* Ensure sufficient contrast for links */
+a {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Better heading contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ifm-color-emphasis-0);
+}
+
+/* Code block accessibility */
+.prism-code {
+  tab-size: 4;
+}
+
+/* Ensure form elements are accessible */
+input, select, textarea {
+  font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Responsive design for small screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  /* Adjust font sizes for better readability on small screens */
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Adjust sidebar for mobile */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    z-index: 999;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar--show {
+    left: 0;
+  }
+
+  /* Adjust main content for mobile */
+  .main-wrapper {
+    width: 100%;
+  }
+
+  /* Better spacing on mobile */
+  .main-wrapper section {
+    padding: 1rem;
+  }
+
+  /* Code blocks on mobile */
+  .prism-code {
+    font-size: 0.8rem;
+    padding: 1rem;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Buttons on mobile */
+  .button {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  /* Navigation on mobile */
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar__items {
+    flex-wrap: wrap;
+  }
+
+  /* Diagrams on mobile */
+  .mermaid-diagram,
+  .d3-diagram {
+    min-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Adjust code examples for very small screens */
+  .code-example {
+    font-size: 0.7rem;
+  }
+
+  /* Navigation items */
+  .navbar__item,
+  .navbar__link {
+    font-size: 0.8rem;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --ifm-color-primary: #0066cc;
+    --ifm-color-primary-dark: #0052a3;
+    --ifm-color-primary-darker: #004d99;
+    --ifm-color-primary-darkest: #003366;
+    --ifm-color-primary-light: #3385e6;
+    --ifm-color-primary-lighter: #66a3ec;
+    --ifm-color-primary-lightest: #99c2f2;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for interactive elements */
+button,
+.docusaurus-highlight-code-line {
+  transition: all 0.2s ease;
+}
+
+/* Better contrast for buttons */
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-emphasis-1000);
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+/* Ensure images have appropriate alt text handling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better table accessibility */
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Better contrast for navigation */
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Improve header logo size and appearance */
+.navbar__logo {
+  height: 40px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.navbar__logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Improve overall header appearance */
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+.navbar__items {
+  gap: 0.5rem;
+}
+
+/* Loading spinner styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.spinner div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid var(--ifm-color-primary);
+  border-radius: 50%;
+  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--ifm-color-primary) transparent transparent transparent;
+}
+
+.spinner div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.spinner div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.spinner div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.slow-connection-message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+/* WCAG 2.1 AA compliant color contrast for various elements */
+.alert--primary {
+  --ifm-alert-background-color: #e6f7f0;
+  --ifm-alert-border-color: #2e8555;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--secondary {
+  --ifm-alert-background-color: #f0f0f0;
+  --ifm-alert-border-color: #666666;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--success {
+  --ifm-alert-background-color: #e6f7f0;
+  --ifm-alert-border-color: #28a745;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--info {
+  --ifm-alert-background-color: #e3f2fd;
+  --ifm-alert-border-color: #2196f3;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--warning {
+  --ifm-alert-background-color: #fff3cd;
+  --ifm-alert-border-color: #ffc107;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
+
+.alert--danger {
+  --ifm-alert-background-color: #f8d7da;
+  --ifm-alert-border-color: #dc3545;
+  --ifm-alert-foreground-color: var(--ifm-color-emphasis-100);
+}
