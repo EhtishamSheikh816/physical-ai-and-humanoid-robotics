@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -9,7 +9,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -22,12 +22,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Get Started - 5min ⏱️
-          </Link>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/chapters/ros2-fundamentals">
+            to="/docs/intro"
+          >
             Explore Textbook
           </Link>
         </div>
@@ -37,11 +33,12 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Learn Physical AI & Humanoid Robotics`}
-      description="Comprehensive textbook on embodied intelligence, simulation, robot control, and humanoid interaction">
+      description="Comprehensive textbook on embodied intelligence, simulation, robot control, and humanoid interaction"
+    >
       <HomepageHeader />
       <main>
         <HomepageFeatures />

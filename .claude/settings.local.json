@@ -12,7 +12,9 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit for Physical AI and Humanoid Robotics textbook project\n\n- Set up Docusaurus documentation site for physical AI textbook\n- Added chapters on ROS2 fundamentals, humanoid locomotion, balance control, Gazebo simulation, Isaac Sim, Unity integration, VLA models, and capstone project\n- Implemented authentication middleware, progress tracking, and developer navigation\n- Added configuration files, GitHub workflows, and project specifications\n- Created initial package.json and TypeScript configuration\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git remote add origin https://github.com/EhtishamSheikh816/physical-ai-and-humanoid-robotics.git)",
       "Bash(git push -u origin 001-physical-ai-textbook)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Enhance UI with beautiful design and improved styling\n\n- Updated color scheme with modern gradient colors (blue/green)\n- Improved homepage layout with gradient backgrounds and animations\n- Enhanced feature cards with hover effects and better styling\n- Added beautiful hero section with gradient background and animations\n- Improved typography and spacing throughout the site\n- Enhanced dark mode support with matching colors\n- Updated navigation with glassmorphism effect\n- Improved accessibility with better contrast ratios\n- Updated GitHub links to point to correct repository\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push origin 001-physical-ai-textbook)"
     ],
     "deny": [],
     "ask": []
