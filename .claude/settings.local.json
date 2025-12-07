@@ -8,7 +8,11 @@
       "Bash(grep -l \"details\" docs/chapters/*.mdx)",
       "Bash(ls -la docs/chapters/*.bak)",
       "Bash(taskkill //f //pid 5492)",
-      "Bash(git add .)"
+      "Bash(git add .)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit for Physical AI and Humanoid Robotics textbook project\n\n- Set up Docusaurus documentation site for physical AI textbook\n- Added chapters on ROS2 fundamentals, humanoid locomotion, balance control, Gazebo simulation, Isaac Sim, Unity integration, VLA models, and capstone project\n- Implemented authentication middleware, progress tracking, and developer navigation\n- Added configuration files, GitHub workflows, and project specifications\n- Created initial package.json and TypeScript configuration\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git remote add origin https://github.com/EhtishamSheikh816/physical-ai-and-humanoid-robotics.git)",
+      "Bash(git push -u origin 001-physical-ai-textbook)",
+      "Bash(npm start)"
     ],
     "deny": [],
     "ask": []

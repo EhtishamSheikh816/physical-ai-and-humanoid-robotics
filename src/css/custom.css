@@ -6,13 +6,16 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #1a73e8; /* Google blue */
+  --ifm-color-primary-dark: #1557b0;
+  --ifm-color-primary-darker: #1452a5;
+  --ifm-color-primary-darkest: #104387;
+  --ifm-color-primary-light: #4285f4;
+  --ifm-color-primary-lighter: #5e97f6;
+  --ifm-color-primary-lightest: #8ab8ff;
+  --ifm-color-secondary: #34a853; /* Google green */
+  --ifm-color-tertiary: #fbbc04; /* Google yellow */
+  --ifm-color-quaternary: #ea4335; /* Google red */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
@@ -28,17 +31,22 @@
   --ifm-color-emphasis-800: #cccccc;
   --ifm-color-emphasis-900: #e6e6e6;
   --ifm-color-emphasis-1000: #ffffff;
+
+  /* Gradient colors */
+  --gradient-start: #1a73e8;
+  --gradient-end: #34a853;
+  --gradient-text: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #8ab8ff;
+  --ifm-color-primary-dark: #5e97f6;
+  --ifm-color-primary-darker: #4285f4;
+  --ifm-color-primary-darkest: #1a73e8;
+  --ifm-color-primary-light: #a4c7ff;
+  --ifm-color-primary-lighter: #bed6ff;
+  --ifm-color-primary-lightest: #d9e6ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
   /* Ensure text is readable in dark mode */
@@ -324,13 +332,163 @@ table {
   object-fit: contain;
 }
 
+/* Beautiful gradient background for hero banner */
+.hero--primary {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 40%),
+              radial-gradient(circle at bottom left, rgba(255,255,255,0.1) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero__title {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero__subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Improved button styles */
+.button--secondary {
+  background-color: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.3);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.button--secondary:hover {
+  background-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
 /* Improve overall header appearance */
 .navbar {
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
+  background-color: rgba(255,255,255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(15, 23, 42, 0.95);
 }
 
 .navbar__items {
-  gap: 0.5rem;
+  gap: 0.8rem;
+}
+
+/* Card styles for features */
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-text);
+}
+
+[data-theme='dark'] .feature-card {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card h3 {
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+}
+
+[data-theme='dark'] .feature-card h3 {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Improved typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Section styling */
+section {
+  padding: 4rem 0;
+}
+
+/* Container improvements */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Footer styling */
+.footer {
+  background: linear-gradient(135deg, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-200));
+  padding: 3rem 0 2rem;
+}
+
+[data-theme='dark'] .footer {
+  background: linear-gradient(135deg, var(--ifm-color-emphasis-900), var(--ifm-color-emphasis-800));
+}
+
+/* Code block styling */
+.prism-code {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Table styling */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+th {
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] th {
+  background-color: var(--ifm-color-primary-darkest);
 }
 
 /* Loading spinner styles */

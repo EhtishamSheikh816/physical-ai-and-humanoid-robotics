@@ -16,15 +16,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io',
+  url: 'https://ehtishamsheikh816.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/physical-ai-humanoid-robotics-textbook/',
+  baseUrl: '/physical-ai-and-humanoid-robotics/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-username', // Usually your GitHub org/user name.
-  projectName: 'physical-ai-humanoid-robotics-textbook', // Usually your repo name.
+  organizationName: 'EhtishamSheikh816', // Usually your GitHub org/user name.
+  projectName: 'physical-ai-and-humanoid-robotics', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -47,7 +47,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/EhtishamSheikh816/physical-ai-and-humanoid-robotics/edit/main/',
         },
         blog: {
           showReadingTime: true,
@@ -58,7 +58,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/EhtishamSheikh816/physical-ai-and-humanoid-robotics/edit/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -101,12 +101,12 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'textbook', // FIXED HERE
+          sidebarId: 'textbook',
           position: 'left',
           label: 'Textbook',
         },
         {
-          href: 'https://github.com/your-username/physical-ai-humanoid-robotics-textbook',
+          href: 'https://github.com/EhtishamSheikh816/physical-ai-and-humanoid-robotics',
           label: 'GitHub',
           position: 'right',
         },
