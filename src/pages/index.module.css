@@ -8,7 +8,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: white;
 }
 
@@ -52,7 +52,7 @@
 
 /* Gradient text utility */
 .gradient-text {
-  background: var(--gradient-text);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
