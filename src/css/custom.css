@@ -197,6 +197,17 @@ body {
   padding-left:.75rem;
 }
 
+/* Hide sidebar arrows/carets */
+.menu__caret {
+  display: none !important;
+}
+.menu__link--sublist {
+  background: none !important;
+}
+.menu__link--sublist::after {
+  display: none !important;
+}
+
 /* -------------------------
    Code blocks & pre / Prism
    ------------------------- */

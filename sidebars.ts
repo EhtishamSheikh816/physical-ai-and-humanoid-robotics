@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Introduction',
-      collapsed: false,
+      collapsed: true,
       items: [
         'intro',
       ],
@@ -26,7 +26,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'ROS 2 Fundamentals',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/ros2-fundamentals',
       ],
@@ -34,7 +34,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Gazebo Simulation',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/gazebo-simulation',
       ],
@@ -42,7 +42,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Unity Integration',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/unity-integration',
       ],
@@ -50,7 +50,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Isaac Sim',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/isaac-sim',
       ],
@@ -58,7 +58,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Vision-Language-Action Models',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/vla-models',
       ],
@@ -66,7 +66,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Capstone Project',
-      collapsed: false,
+      collapsed: true,
       items: [
         'chapters/capstone-project',
       ],
