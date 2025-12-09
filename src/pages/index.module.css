@@ -26,6 +26,46 @@
   flex-wrap: wrap;
 }
 
+/* Beautiful button styles for hero banner */
+.buttons a {
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 200px;
+}
+
+.buttons a.button--primary {
+  background: white;
+  color: var(--accent);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.buttons a.button--primary:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.buttons a.button--secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.buttons a.button--secondary:hover {
+  background: white;
+  color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
 /* Animation for hero elements */
 .hero__title {
   animation: fadeInUp 1s ease-out;
