@@ -1,44 +1,48 @@
 <!--
 SYNC IMPACT REPORT
-Version change: N/A (initial creation) → 1.0.0
-List of modified principles: N/A (initial creation)
-Added sections: All principles and sections (initial creation)
-Removed sections: N/A
+Version change: 1.0.0 → 1.1.0
+List of modified principles:
+  - AI/Spec-Driven Book Creation → Integrated RAG Chatbot Development for Physical AI & Humanoid Robotics Textbook
+  - Accuracy through verified technical documentation → Technical accuracy in RAG architecture
+  - Clarity and accessibility for diverse audiences → Clarity for intermediate software engineers
+  - Consistency across chapters → Reproducibility of RAG components
+  - Modularity and reproducibility → Reliability of all components
+  - No AI hallucinations or unverifiable claims → Security: No hardcoded API keys
+  - Reproducible deployment → Updated success criteria
+Added sections: RAG-specific principles and constraints
+Removed sections: Docusaurus-specific constraints
 Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ reviewed - constitution check section will work with new principles
-  - .specify/templates/spec-template.md ✅ reviewed - no direct dependencies on constitution
-  - .specify/templates/tasks-template.md ✅ reviewed - no direct dependencies on constitution
+  - .specify/templates/plan-template.md ✅ updated - constitution check section now includes RAG principles
+  - .specify/templates/spec-template.md ✅ updated - now includes RAG requirements
+  - .specify/templates/tasks-template.md ✅ updated - now includes RAG tasks
 Follow-up TODOs: None
 -->
-# AI/Spec-Driven Book Creation using Docusaurus & GitHub Pages Constitution
+# Integrated RAG Chatbot Development for Physical AI & Humanoid Robotics Textbook Constitution
 
 ## Core Principles
 
-### Accuracy through verified technical documentation
-All factual or technical claims must reference official documentation or credible sources; Code snippets must be validated and error-free
+### Technical accuracy in explaining RAG architecture, embeddings, vector search, and pipeline operations
+All technical explanations must be validated against official documentation (OpenAI, Qdrant, Neon, FastAPI); Architectural diagrams must reflect real system behavior
 
-### Clarity and accessibility for diverse audiences
-Writing style: educational, concise, beginner-friendly; Content must be clear for students, beginners, and developers learning Physical AI & Humanoid Robotics
+### Clarity for an audience of intermediate software engineers and educators
+Writing clarity target: Flesch-Kincaid grade 9–11; All examples must use free-tier compatible configurations
 
-### Consistency across chapters
-Consistency across chapters (structure, tone, terminology); Formatting must follow Docusaurus MDX standards
+### Reproducibility of all RAG components (OpenAI Agents/ChatKit SDKs, FastAPI backend, Neon Postgres, Qdrant Cloud)
+Code snippets must be executable and tested; All code, pipelines, and examples must run as specified
 
-### Modularity and reproducibility
-Modularity to support iterative development with Claude Code and Spec-Kit Plus; All code examples must be runnable and tested
+### Reliability: All code, pipelines, and examples must run as specified
+Database schemas, API routes, and embedding workflows must be explicitly documented; All examples must be executable and tested
 
-### No AI hallucinations or unverifiable claims
-No AI hallucinations or unverifiable claims (must be fact-checked against sources); Citations for external references: APA or official-docs hyperlinking
-
-### Reproducible deployment
-Book structure must follow Docusaurus sidebar + folder hierarchy; Deployment must work on GitHub Pages without build errors
+### Security: No hardcoded API keys; adherence to safe data handling practices
+No hardcoded API keys or tokens; adherence to safe data handling practices; Must provide user-data protection guidelines
 
 ## Technical Constraints
-Word count per chapter: 800–1500 words; Minimum 10 chapters covering full course scope; All assets must be open-source or self-created; No copyrighted or proprietary content unless user-owned
+Content must describe full integration: Chatbot → RAG Pipeline → Vector DB → Postgres → Book text ingestion; Must include at least 3 working code blocks (ChatKit/Agents, FastAPI, Qdrant/Neon); No speculative or unverified claims about model capabilities; Must avoid vendor lock-in assumptions
 
 ## Success Criteria
-Book builds successfully in Docusaurus without warnings or errors; All content is factually correct and free from hallucinations; Code examples run without issues; Clear learning outcomes per chapter; GitHub Pages deployment successful and publicly accessible; Reviewers judge the book as clear, accurate, and technically sound
+RAG chatbot can answer questions strictly based on the user-selected text; All code runs without modification for a new developer; Architecture diagrams match the fully implemented system; Book readers can reproduce the RAG pipeline end-to-end; Chatbot passes functional tests: retrieval accuracy, context isolation, reproducibility
 
 ## Governance
 This constitution supersedes all other practices; Amendments require documentation and approval; All development must verify compliance with these principles; Use this constitution for guidance on project standards and quality expectations
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-06
+**Version**: 1.1.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-10

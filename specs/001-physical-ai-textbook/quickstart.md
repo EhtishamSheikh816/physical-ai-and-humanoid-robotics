@@ -1,204 +1,181 @@
-# Quickstart Guide: Physical AI & Humanoid Robotics Textbook
+# Quickstart Guide: Physical AI & Humanoid Robotics Course Book
+
+## Overview
+This guide provides a quick setup and development workflow for the Physical AI & Humanoid Robotics textbook built with Docusaurus. The textbook covers ROS 2 fundamentals, Gazebo simulation, Isaac-based perception, and VLA systems with hands-on workflows and a capstone project.
 
 ## Prerequisites
-
-- Node.js (v18.x or later)
+- Node.js LTS (v20.x or higher)
 - npm or yarn package manager
 - Git
-- GitHub account (for authentication and progress tracking)
+- Ubuntu 22.04 LTS (for following examples) or compatible Linux system
+- Basic knowledge of ROS 2, Gazebo, and Isaac Sim (as covered in the textbook)
 
-## Setup Instructions
+## Installation
 
-### 1. Clone the Repository
+1. **Clone the repository:**
 ```bash
 git clone <repository-url>
 cd <repository-name>
 ```
 
-### 2. Install Dependencies
+2. **Install dependencies:**
 ```bash
 npm install
-# or
-yarn install
 ```
 
-### 3. Environment Configuration
-Create a `.env` file in the root directory with the following:
-```env
-# GitHub OAuth App configuration
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-
-# For local development only
-LOCAL_DEVELOPMENT=true
-```
-
-### 4. Run Development Server
+3. **Start the development server:**
 ```bash
 npm start
-# or
-yarn start
+```
+This command starts a local development server and opens the textbook in your browser. Most changes are reflected live without restarting the server.
+
+## Project Structure
+```
+docs/
+├── chapters/            # Textbook content in MDX format
+│   ├── 01-ros-fundamentals.mdx
+│   ├── 02-gazebo-simulation.mdx
+│   ├── 03-isaac-perception.mdx
+│   ├── 04-vla-systems.mdx
+│   ├── 05-hardware-setup.mdx
+│   └── 06-capstone-project.mdx
+├── components/          # Custom Docusaurus components
+├── theme/               # Custom theme components
+├── static/              # Static assets (images, diagrams)
+│   └── img/
+├── src/
+│   ├── css/
+│   └── pages/
+├── sidebars.js          # Navigation configuration
+├── docusaurus.config.js # Docusaurus configuration
+└── package.json         # Project dependencies
 ```
 
-This will start the Docusaurus development server at `http://localhost:3000`.
+## Adding New Content
 
-## Adding New Chapters
-
-### 1. Create Chapter File
-Create a new MDX file in the `docs/chapters/` directory:
+### Creating a New Chapter
+1. Create a new MDX file in the `docs/chapters/` directory:
 ```bash
-# Example: Creating a new chapter on ROS2 services
-touch docs/chapters/ros2-services.mdx
+# Example: Create a chapter about navigation
+touch docs/chapters/03-navigation.mdx
 ```
 
-### 2. Follow Chapter Template
-```mdx
+2. Add frontmatter to your MDX file:
+```md
 ---
-title: ROS 2 Services
+title: Navigation Systems
+description: Understanding robot navigation in Physical AI
 sidebar_position: 3
-description: Understanding ROS 2 services and their implementation
 ---
 
-# ROS 2 Services
+# Navigation Systems
 
-## Introduction
-
-[Your chapter content here]
-
-## Key Concepts
-
-- Concept 1
-- Concept 2
-- Concept 3
-
-## Code Example
-
-import CodeExample from '@site/src/components/code-examples/Example';
-
-<CodeExample
-  title="Simple Service Server"
-  language="python"
-  code={`# Your code here`}
-  description="This example demonstrates how to create a simple service server."
-/>
-
-## Summary
-
-[Chapter summary]
-
-## Next Steps
-
-- [Previous Chapter](./previous-chapter.mdx)
-- [Next Chapter](./next-chapter.mdx)
+Content goes here...
 ```
 
-### 3. Update Sidebar
-Add your new chapter to `docs/sidebar.js`:
-```javascript
+3. Update `sidebars.js` to include your new chapter:
+```js
 module.exports = {
   textbook: [
+    'chapters/01-ros-fundamentals',
+    'chapters/02-gazebo-simulation',
+    'chapters/03-navigation',  // Add your new chapter here
+    'chapters/04-vla-systems',
     // ... other chapters
-    'chapters/ros2-services',
-    // ... remaining chapters
   ],
 };
 ```
 
-## Running Tests
+### Adding Diagrams
+Use Mermaid.js for interactive diagrams:
+```mdx
+import Mermaid from '@theme/Mermaid';
 
-### Unit Tests
-```bash
-npm test
-# or
-yarn test
+<Mermaid>
+graph TD
+    A[Robot] --> B{Decision Point}
+    B --> C[Action 1]
+    B --> D[Action 2]
+</Mermaid>
 ```
 
-### End-to-End Tests
-```bash
-npm run test:e2e
-# or
-yarn test:e2e
+Or include static images with proper accessibility:
+```mdx
+import img from '@site/static/img/ros-graph.png';
+
+<img src={img} alt="ROS graph showing nodes and topics connection" />
 ```
 
-### Content Validation
-```bash
-npm run lint:content
-# or
-yarn lint:content
+### Adding Code Examples
+Use standard Docusaurus code blocks with syntax highlighting:
+````mdx
+```python
+import rclpy
+from rclpy.node import Node
+
+class MinimalPublisher(Node):
+    def __init__(self):
+        super().__init__('minimal_publisher')
+        self.publisher = self.create_publisher(String, 'topic', 10)
 ```
+````
 
 ## Building for Production
 
+To build the static site for deployment:
+
 ```bash
 npm run build
-# or
-yarn build
 ```
 
-The built static files will be in the `build/` directory and ready for deployment to GitHub Pages.
+This command generates static content into the `build` directory and can be served using any static hosting service.
 
-## Deployment to GitHub Pages
+## Testing Accessibility
 
-The project is configured for GitHub Actions deployment. To deploy:
+To ensure WCAG 2.1 AA compliance:
 
-1. Push changes to the `main` branch
-2. Ensure the GitHub Pages settings in your repository are configured to use the `/build` folder from the `main` branch
-
-Alternatively, you can manually deploy:
+1. **Check color contrast:**
 ```bash
-npm run deploy
-# or
-yarn deploy
+npm run check-contrast
 ```
 
-## Adding Interactive Components
-
-### Custom MDX Components
-To add interactive elements like progress tracking or code execution:
-
-1. Create the component in `src/components/`
-2. Import and use in your MDX files
-
-Example for a progress tracker:
-```jsx
-import ProgressTracker from '@site/src/components/ProgressTracker';
-
-<ProgressTracker chapterId="ros2-services" />
+2. **Run accessibility audit:**
+```bash
+npm run audit-a11y
 ```
 
-## Accessibility Guidelines
+3. **Use automated tools like axe-core during development**
 
-All content should meet WCAG 2.1 AA standards:
+## Deployment
 
-1. Use proper heading hierarchy (h1, h2, h3, etc.)
-2. Include alt text for all images
-3. Ensure sufficient color contrast
-4. Provide text alternatives for diagrams
-5. Use semantic HTML elements
+The site is designed for GitHub Pages deployment:
 
-## Content Standards
+1. Commit all changes:
+```bash
+git add .
+git commit -m "Update textbook content"
+git push origin main
+```
 
-1. **Word Count**: Keep chapters between 800-1500 words
-2. **Code Examples**: All code must be validated against official documentation
-3. **Citations**: Reference official documentation sources only
-4. **Diagrams**: Use Mermaid or D3.js for accessibility-compliant diagrams
-5. **Tone**: Educational, concise, beginner-friendly
+2. GitHub Actions will automatically build and deploy the site to GitHub Pages if configured.
+
+## Commands Reference
+
+- `npm start` - Start local development server
+- `npm run build` - Build static site for production
+- `npm run serve` - Serve the built site locally for testing
+- `npm run swizzle` - Override Docusaurus components (use carefully)
+- `npm run clear` - Clear the Docusaurus cache
+- `npm run check-contrast` - Check color contrast ratios
+- `npm run audit-a11y` - Run accessibility audit
 
 ## Troubleshooting
 
-### Common Issues
+**Problem:** Diagrams not rendering
+**Solution:** Check if Mermaid is properly configured in `docusaurus.config.js`
 
-**Problem**: GitHub authentication not working in development
-**Solution**: Ensure your GitHub OAuth app is configured with the correct callback URL (`http://localhost:3000` for development)
+**Problem:** Images not loading
+**Solution:** Ensure images are in the `static/` directory and properly referenced with the `@site` alias
 
-**Problem**: Code examples not rendering properly
-**Solution**: Check that the language is properly specified and the code block is correctly formatted
-
-**Problem**: Slow build times
-**Solution**: Consider splitting large chapters into smaller sections or optimizing images
-
-## Getting Help
-
-- Check the [documentation](https://docusaurus.io/docs) for Docusaurus-specific issues
-- Review the [GitHub repository](https://github.com/) for project-specific issues
-- Contact the development team for assistance
+**Problem:** Page load times too slow
+**Solution:** Optimize images and check bundle size with `npm run build -- --bundle-analyzer`

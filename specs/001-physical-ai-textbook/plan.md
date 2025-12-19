@@ -1,43 +1,44 @@
-# Implementation Plan: [FEATURE]
+# Implementation Plan: Physical AI & Humanoid Robotics Course Book
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Branch**: `001-physical-ai-textbook` | **Date**: 2025-12-10 | **Spec**: [specs/001-physical-ai-textbook/spec.md](./spec.md)
+**Input**: Feature specification from `/specs/001-physical-ai-textbook/spec.md`
 
 **Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-Implementation of a Docusaurus-based textbook on Physical AI & Humanoid Robotics with user authentication and progress tracking. The solution will provide 10+ chapters covering ROS 2, Gazebo, Unity, Isaac Sim, VLA, and capstone project topics, with runnable code examples and interactive diagrams. The implementation uses static site generation with Docusaurus v3.x deployed to GitHub Pages, with client-side authentication via GitHub OAuth and progress tracking via GitHub Gists API to meet WCAG 2.1 AA accessibility compliance and support 1000+ concurrent users.
+Create a comprehensive textbook on Physical AI & Humanoid Robotics using Docusaurus MDX format with static deployment to GitHub Pages. The textbook will cover ROS 2 fundamentals, Gazebo simulation, Isaac-based perception, and VLA systems with hands-on workflows and a capstone project. The content will target intermediate-advanced students and educators, with WCAG 2.1 AA accessibility compliance and fast page load times.
 
 ## Technical Context
 
 **Language/Version**: JavaScript/TypeScript with Node.js LTS (v20.x) for Docusaurus framework compatibility
 **Primary Dependencies**: Docusaurus v3.x, React, Node.js, GitHub Pages deployment tools
-**Storage**: GitHub Pages static hosting (no server-side storage), client-side browser storage for user progress tracking
-**Testing**: Jest for unit testing, Cypress for end-to-end testing, Markdownlint for content validation
-**Target Platform**: Web browser (Chrome, Firefox, Safari, Edge), responsive design for mobile and desktop
-**Project Type**: Static site generation with Docusaurus framework for documentation/book hosting
-**Performance Goals**: Page load times under 3 seconds, support for 1000+ concurrent users via CDN
-**Constraints**: Static site limitations (no server-side processing), GitHub Pages deployment constraints, WCAG 2.1 AA accessibility compliance
-**Scale/Scope**: Minimum 10 chapters with 800-1500 words each, including code examples and diagrams; supports authenticated users with progress tracking
+**Storage**: N/A (static content delivery)
+**Testing**: Markdown validation, build process verification, accessibility testing
+**Target Platform**: GitHub Pages static hosting (no server-side storage), client-side browser storage for user progress tracking
+**Project Type**: static web documentation
+**Performance Goals**: Page load times under 3 seconds on standard internet connections
+**Constraints**: Content must be technically accurate with official documentation alignment, Flesch-Kincaid grade 10-12 readability, WCAG 2.1 AA compliance
+**Scale/Scope**: 8,000-12,000 words across multiple chapters with 5+ architecture diagrams
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-1. **Accuracy through verified technical documentation**: All content will reference official documentation from ROS 2, NVIDIA Isaac, Gazebo, Unity, and other specified sources. Code examples will be validated against official documentation and tested in ROS 2 Humble or Iron environments.
+### Technical accuracy in explaining RAG architecture, embeddings, vector search, and pipeline operations
+**Status**: PASS - Content will be validated against official documentation (ROS 2, Isaac, Gazebo, Unity, Jetson, RealSense) as specified in the feature requirements
 
-2. **Clarity and accessibility for diverse audiences**: The textbook will follow educational, concise, and beginner-friendly writing style. Content will be structured to be clear for students, educators, and developers learning Physical AI & Humanoid Robotics.
+### Clarity for an audience of intermediate software engineers and educators
+**Status**: PASS - Content will target Flesch-Kincaid grade 10-12 reading level as specified in the feature requirements
 
-3. **Consistency across chapters**: All chapters will follow Docusaurus MDX standards with consistent structure, tone, and terminology. A style guide will be established to maintain consistency.
+### Reproducibility of all RAG components (OpenAI Agents/ChatKit SDKs, FastAPI backend, Neon Postgres, Qdrant Cloud)
+**Status**: PASS - All examples and workflows will be reproducible with the specified software stack (Ubuntu 22.04 LTS, ROS 2 Humble/Iron, etc.) as specified in the feature requirements
 
-4. **Modularity and reproducibility**: The textbook will be built using Claude Code and Spec-Kit Plus workflows for iterative development. All code examples will be runnable and tested in appropriate environments.
+### Reliability: All code, pipelines, and examples must run as specified
+**Status**: PASS - All technical claims will be verified against official documentation and examples will be tested as specified in the feature requirements
 
-5. **No AI hallucinations or unverifiable claims**: All technical claims will be verified against official documentation sources with no hallucinations. Citations will follow APA or official-docs hyperlinking standards.
-
-6. **Reproducible deployment**: The book structure will follow Docusaurus sidebar + folder hierarchy and will be deployed to GitHub Pages without build errors.
-
-*GATE STATUS: PASSED - All constitutional principles are addressed in the implementation approach.*
+### Security: No hardcoded API keys; adherence to safe data handling practices
+**Status**: PASS - No API keys or user data handling required since this is a static textbook without authentication as clarified in the feature requirements
 
 ## Project Structure
 
@@ -56,38 +57,31 @@ specs/001-physical-ai-textbook/
 ### Source Code (repository root)
 
 ```text
-# Docusaurus textbook with authentication and progress tracking
 docs/
-├── sidebar.js           # Navigation structure aligned with course modules
-├── chapters/            # Individual textbook chapters (MDX format)
-│   ├── ros2-fundamentals.mdx
-│   ├── gazebo-simulation.mdx
-│   ├── unity-integration.mdx
-│   ├── isaac-sim.mdx
-│   ├── vla-models.mdx
-│   └── capstone-project.mdx
-├── components/          # Custom React components for textbook features
-│   ├── auth/
-│   │   ├── login-button.js
-│   │   └── progress-tracker.js
-│   ├── diagrams/        # Custom diagram components
-│   └── code-examples/   # Interactive code example components
-├── pages/               # Additional pages (login, dashboard, etc.)
-│   ├── login.js
-│   └── dashboard.js
+├── chapters/            # Textbook content in MDX format
+│   ├── 01-ros-fundamentals.mdx
+│   ├── 02-gazebo-simulation.mdx
+│   ├── 03-isaac-perception.mdx
+│   ├── 04-vla-systems.mdx
+│   ├── 05-hardware-setup.mdx
+│   └── 06-capstone-project.mdx
+├── components/          # Custom Docusaurus components
+├── theme/               # Custom theme components
 ├── static/              # Static assets (images, diagrams)
 │   └── img/
 ├── src/
 │   ├── css/
-│   │   └── custom.css   # Custom styling for accessibility compliance
-│   └── theme/
-│       └── MDXComponents.js  # Custom MDX component overrides
+│   └── pages/
+├── sidebars.js          # Navigation configuration
 ├── docusaurus.config.js # Docusaurus configuration
-├── package.json         # Project dependencies and scripts
-└── babel.config.js      # Babel configuration
+└── package.json         # Project dependencies
+
+.history/
+└── prompts/             # Prompt History Records
+    └── 001-physical-ai-textbook/
 ```
 
-**Structure Decision**: Single Docusaurus project with authentication features implemented via client-side storage and custom components. The structure supports static hosting on GitHub Pages while providing user authentication and progress tracking capabilities.
+**Structure Decision**: Docusaurus-based documentation site with MDX chapters organized by topic, following the feature requirements for static content delivery and Docusaurus MDX format.
 
 ## Complexity Tracking
 
@@ -97,3 +91,20 @@ docs/
 |-----------|------------|-------------------------------------|
 | [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
 | [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+
+## Constitution Check (Post-Design)
+
+### Technical accuracy in explaining RAG architecture, embeddings, vector search, and pipeline operations
+**Status**: PASS - Content will be validated against official documentation (ROS 2, Isaac, Gazebo, Unity, Jetson, RealSense) as specified in the feature requirements
+
+### Clarity for an audience of intermediate software engineers and educators
+**Status**: PASS - Content will target Flesch-Kincaid grade 10-12 reading level as specified in the feature requirements
+
+### Reproducibility of all RAG components (OpenAI Agents/ChatKit SDKs, FastAPI backend, Neon Postgres, Qdrant Cloud)
+**Status**: PASS - All examples and workflows will be reproducible with the specified software stack (Ubuntu 22.04 LTS, ROS 2 Humble/Iron, etc.) as specified in the feature requirements
+
+### Reliability: All code, pipelines, and examples must run as specified
+**Status**: PASS - All technical claims will be verified against official documentation and examples will be tested as specified in the feature requirements
+
+### Security: No hardcoded API keys; adherence to safe data handling practices
+**Status**: PASS - No API keys or user data handling required since this is a static textbook without authentication as clarified in the feature requirements

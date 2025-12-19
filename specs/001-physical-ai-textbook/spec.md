@@ -1,148 +1,148 @@
-# Feature Specification: Physical AI & Humanoid Robotics Textbook
+# Feature Specification: Physical AI & Humanoid Robotics Course Book
 
 **Feature Branch**: `001-physical-ai-textbook`
-**Created**: 2025-12-06
+**Created**: 2025-12-10
 **Status**: Draft
-**Input**: User description: "AI/Spec-Driven Textbook on Physical AI & Humanoid Robotics
-Target audience: Students, educators, and developers learning Physical AI, ROS 2, Isaac Sim, and humanoid robotics
-Focus: Teaching embodied intelligence, simulation, robot control, and humanoid interaction using ROS 2, Gazebo, Unity, and NVIDIA Isaac
+**Input**: User description: "Physical AI & Humanoid Robotics Course Book
+Target audience: Intermediate–advanced students in AI, robotics, and software engineering; educators building robotics curricula
+Focus: Teaching embodied intelligence, humanoid robot design, simulation, and VLA (Vision-Language-Action) systems using ROS 2, Gazebo, Unity, and NVIDIA Isaac
 
 Success criteria:
-- Provides clear explanations of Physical AI, ROS 2, Gazebo, Unity, Isaac Sim, VLA, and humanoid robotics
-- Includes 10+ well-structured chapters aligned with the course modules
-- Contains accurate, runnable, and validated code examples for ROS 2, Gazebo, Isaac Sim, and Unity
-- Provides diagrams (Mermaid or MDX-compatible) for architecture, pipelines, and workflows
-- Ensures that a beginner can understand fundamentals and an intermediate student can build simulations and robot logic
-- Covers the capstone: a simulated humanoid robot receiving voice commands, planning actions, navigating, identifying objects, and manipulating them
-- No hallucinations; all technical claims verified against official docs
+- Clearly explains Physical AI fundamentals, ROS 2 middleware, simulation workflows, Isaac-based perception, and VLA pipelines
+- Includes accurate, reproducible instructions for setting up workstations, Jetson edge kits, and robot hardware
+- Provides 3+ full end-to-end workflows: (1) ROS 2 package, (2) Gazebo simulation, (3) Isaac perception pipeline, (4) Conversational humanoid integration
+- Contains at least 5 architecture diagrams (ROS graph, simulation pipeline, VLA pipeline, hardware stack, sim-to-real workflow)
+- Readers can reproduce the capstone project: a simulated humanoid that follows voice commands, navigates obstacles, and manipulates objects
+- All technical claims aligned with official documentation (ROS 2, Isaac, Gazebo, Unity, Jetson, RealSense)
+- Clarity level: Flesch-Kincaid grade 10–12
 
 Constraints:
+- Word count: 8,000–12,000 words
 - Format: Docusaurus MDX with sidebars, images, and code blocks
-- Chapter word count: 800–1500 words per chapter
-- Total chapters: Minimum 10, aligned with course modules (ROS 2, Gazebo, Unity, Isaac, VLA, Capstone)
-- Sources: Official documentation only (ROS 2, NVIDIA Isaac, Gazebo, Unity, OpenAI Whisper, GPT APIs)
-- No proprietary assets; all diagrams must be user-created or open-source
-- Deployment-ready: Must build and deploy cleanly to GitHub Pages
-- Tools: Spec-Kit Plus + Claude Code workflow for chapter generation, refactoring, and consistency
+- Technical accuracy mandatory; no speculative robotics claims
+- Hardware recommendations must be realistic and reflect 2024–2025 pricing
+- All examples must run on:
+  • Ubuntu 22.04 LTS
+  • ROS 2 Humble/Iron
+  • Jetson Orin Nano/NX
+  • Gazebo Fortress or Garden
+  • Isaac Sim 4.x
+- Chapters must avoid vendor-specific marketing language
+- Do NOT include:
+  • A full research history of robotics
+  • Detailed humanoid mechanics beyond the scope of teaching (e.g., motor torque calculations)
+  • Ethical debates (covered in a separate book)
+  • Full implementation of custom robot hardware from scratch
 
 Not building:
-- Detailed hardware implementation manuals for real humanoids (covered only high-level)
-- Full mechanical engineering analysis of actuators, servo torques, or robot materials
-- A ROS 1-based book (ROS 2 only)
-- A cloud cost optimization manual
-- Ethical, legal, or policy discussions (can be referenced, but not main content)
-
-Timeline:
-- Complete first full draft within 3 weeks
-- Technical proofing and code validation in the following 1 week
-- GitHub Pages deployment by week 5
-
-Deliverables:
-- Full MDX-based textbook repository (Docusaurus)
-- Sidebar.js navigation aligned with modules and weeks
-- Images + diagrams folder
-- Verified code examples tested in ROS 2 Humble or Iron
-- Capstone chapter with step-by-step project pipeline"
+- A robotics PhD-level theoretical text
+- A manufacturing guide for designing a physical humanoid robot
+- A cloud robotics textbook (cloud is optional fallback, not the core)
+- A full comparison of all robotics platforms"
 
 ## Clarifications
 
-### Session 2025-12-06
+### Session 2025-12-10
 
-- Q: Should users be required to create an account to access textbook content? → A: Yes, users must create an account with basic authentication to access premium content and track progress
-- Q: What level of authentication security is required for user accounts? → A: Basic authentication with email/password, with optional two-factor authentication for enhanced security
-- Q: What are the expected performance requirements for concurrent users and page load times? → A: Support 1000+ concurrent users with page load times under 3 seconds
-- Q: What are the data retention requirements for user accounts and learning progress? → A: User data must be retained for 2 years after account inactivity, with clear privacy policy and data export capabilities
-- Q: What are the accessibility requirements for the textbook platform? → A: Support WCAG 2.1 AA compliance for accessibility, including screen readers and keyboard navigation
+- Q: Should the textbook include an account system for tracking student progress? → A: No account system needed - Focus purely on content delivery
+- Q: What deployment method should be used for the textbook? → A: Static content delivery - GitHub Pages or similar hosting
+- Q: What content format and structure should be used? → A: Docusaurus-based MDX with sidebar navigation
+- Q: What accessibility and compliance requirements should be met? → A: WCAG 2.1 AA compliance for accessibility
+- Q: What performance requirements should be met for page loading? → A: Page load times under 3 seconds
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - Student Learning Physical AI Fundamentals (Priority: P1)
+### User Story 1 - Core Physical AI Learning (Priority: P1)
 
-A student with basic programming knowledge wants to learn about Physical AI and humanoid robotics concepts. They create an account and access the textbook online to read chapters on ROS 2 fundamentals, simulation environments, and basic robot control, with their progress tracked in their account.
+As an intermediate student in AI or robotics, I want to understand Physical AI fundamentals and ROS 2 middleware so that I can build embodied intelligence systems. I need clear explanations with practical examples that I can follow step-by-step to set up my development environment and create my first ROS 2 package.
 
-**Why this priority**: This is the foundational user story that enables beginners to start learning the core concepts before moving to more advanced topics.
+**Why this priority**: This is the foundational knowledge that all other learning builds upon. Without understanding Physical AI concepts and ROS 2, students cannot progress to more advanced topics like simulation or perception.
 
-**Independent Test**: The student can create an account, read and understand the first chapter on ROS 2 basics, complete the example exercises, and successfully run the provided code examples in a simulation environment with their progress saved.
+**Independent Test**: Can be fully tested by completing the ROS 2 package creation tutorial and verifying that the student can successfully run the example code on their workstation with Ubuntu 22.04 LTS and ROS 2 Humble/Iron.
 
 **Acceptance Scenarios**:
-1. **Given** a student with basic programming knowledge, **When** they create an account and access the first chapter on ROS 2 fundamentals, **Then** they can understand the concepts, run the example code successfully, and have their progress tracked
-2. **Given** a student following the textbook sequentially, **When** they complete a chapter with code examples, **Then** they can reproduce the results in their own development environment and have their progress saved in their account
+
+1. **Given** a student with a properly configured Ubuntu 22.04 LTS system with ROS 2 Humble/Iron, **When** they follow the ROS 2 package creation tutorial, **Then** they can successfully create, build, and run a basic ROS 2 package with publisher and subscriber nodes.
+
+2. **Given** a student reading the Physical AI fundamentals section, **When** they complete the exercises provided, **Then** they demonstrate understanding of embodied intelligence concepts through practical implementation.
 
 ---
 
-### User Story 2 - Educator Using Textbook for Course Materials (Priority: P2)
+### User Story 2 - Simulation and Perception Workflows (Priority: P2)
 
-An educator wants to use the textbook as course material for a Physical AI or robotics class. They create an account and access structured content, code examples, and capstone project materials to guide their students, with their curriculum planning tracked in their account.
+As an advanced student or educator, I want to learn Gazebo simulation workflows and Isaac-based perception systems so that I can create realistic robot simulations and implement computer vision capabilities for humanoid robots.
 
-**Why this priority**: Educators are key stakeholders who will drive adoption and provide feedback for improving the textbook content.
+**Why this priority**: After mastering basic ROS 2 concepts, students need to understand how to simulate robots in virtual environments and implement perception systems that allow robots to understand their surroundings.
 
-**Independent Test**: The educator can create an account, navigate the textbook structure, access all code examples, and use the capstone project as a course assignment for students with their planning tracked.
+**Independent Test**: Can be fully tested by completing the Gazebo simulation tutorial and Isaac perception pipeline, resulting in a simulated robot that can perceive and respond to objects in a virtual environment.
 
 **Acceptance Scenarios**:
-1. **Given** an educator with an account reviewing the textbook, **When** they access the sidebar navigation, **Then** they can easily find chapters and code examples relevant to their curriculum and save their selections
-2. **Given** an educator preparing course materials, **When** they access the capstone chapter with their account, **Then** they can extract all necessary components to create student assignments and track their curriculum planning
+
+1. **Given** a student with Gazebo Fortress or Garden properly installed, **When** they follow the simulation workflow tutorial, **Then** they can create a robot model and run a physics simulation with realistic interactions.
+
+2. **Given** a student with NVIDIA Isaac Sim 4.x properly configured, **When** they implement the perception pipeline, **Then** the simulated robot can detect and classify objects in its environment using vision-based algorithms.
 
 ---
 
-### User Story 3 - Developer Implementing Humanoid Robot Solutions (Priority: P3)
+### User Story 3 - Capstone Project Implementation (Priority: P3)
 
-A developer with robotics experience wants to learn about NVIDIA Isaac Sim, Unity integration, and Vision-Language-Action models for humanoid robotics applications. They create an account and use the textbook to find advanced implementation patterns and code examples, with their learning progress tracked in their account.
+As a student completing the course, I want to reproduce the capstone project with a simulated humanoid that follows voice commands, navigates obstacles, and manipulates objects so that I can demonstrate mastery of all the concepts covered in the book.
 
-**Why this priority**: This user story addresses the more advanced audience who needs practical implementation knowledge for real-world applications.
+**Why this priority**: This provides a comprehensive, end-to-end project that integrates all the concepts learned throughout the book, allowing students to demonstrate their understanding of the complete Physical AI and humanoid robotics pipeline.
 
-**Independent Test**: The developer can create an account, access advanced chapters on Isaac Sim and VLA models, understand the implementation patterns, and adapt the code examples for their own projects with their progress tracked.
+**Independent Test**: Can be fully tested by successfully implementing the complete capstone project where the humanoid robot responds to voice commands, avoids obstacles, and performs object manipulation tasks.
 
 **Acceptance Scenarios**:
-1. **Given** a developer familiar with robotics concepts, **When** they access advanced chapters on Isaac Sim integration with their account, **Then** they can implement the described patterns in their own projects and track their learning progress
-2. **Given** a developer working with humanoid robots, **When** they follow the capstone project with their account, **Then** they can successfully implement voice command processing, navigation, object identification, and manipulation with their progress saved
+
+1. **Given** a student who has completed all previous chapters, **When** they implement the capstone project, **Then** they create a simulated humanoid that successfully executes voice commands and navigates around obstacles.
+
+2. **Given** a student working on the capstone project, **When** they test the object manipulation capability, **Then** the humanoid robot can successfully identify, approach, and manipulate objects in the simulation environment.
 
 ---
 
 ### Edge Cases
 
-- What happens when a user accesses the textbook from a slow internet connection and cannot load large diagrams or code examples?
-- How does the system handle users with different technical backgrounds trying to access advanced content without understanding prerequisites?
-- What if official documentation sources change and the textbook references become outdated?
+- What happens when students have different hardware configurations than the recommended Ubuntu 22.04 LTS with ROS 2 Humble/Iron?
+- How does the system handle students with limited access to NVIDIA Jetson hardware for hands-on exercises?
+- What if students encounter version compatibility issues between ROS 2, Gazebo, and Isaac Sim?
+- How do students proceed if they have limited computational resources for running complex simulations?
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: Textbook MUST be accessible as a Docusaurus-based website with responsive design for multiple device types
-- **FR-002**: Textbook MUST provide at least 10 chapters covering ROS 2, Gazebo, Unity, Isaac Sim, VLA, and capstone project topics
-- **FR-003**: Users MUST be able to access runnable code examples for ROS 2, Gazebo, Isaac Sim, and Unity environments
-- **FR-004**: Textbook MUST include diagrams and visual aids compatible with Mermaid or MDX formats
-- **FR-005**: Textbook MUST provide a capstone project that demonstrates voice commands, planning, navigation, object identification, and manipulation
-- **FR-006**: Content MUST be verifiable against official documentation sources without hallucinations
-- **FR-007**: Textbook MUST be deployable to GitHub Pages without build errors
-- **FR-008**: Chapters MUST be between 800-1500 words to maintain appropriate depth and readability
-- **FR-009**: Textbook MUST include navigation structure that aligns with course modules and weeks
-- **FR-010**: Textbook MUST include images and diagrams that are either user-created or open-source (no proprietary content)
-- **FR-011**: Users MUST create an account with authentication to access premium content and track their learning progress
-- **FR-012**: Authentication system MUST support email/password registration and login, with optional two-factor authentication for enhanced security
+- **FR-001**: System MUST provide clear explanations of Physical AI fundamentals and embodied intelligence concepts
+- **FR-002**: System MUST include accurate, reproducible instructions for setting up workstations with Ubuntu 22.04 LTS and ROS 2 Humble/Iron
+- **FR-003**: System MUST provide at least 3 full end-to-end workflows covering ROS 2 package development, Gazebo simulation, and Isaac perception pipeline
+- **FR-004**: System MUST include at least 5 architecture diagrams covering ROS graph, simulation pipeline, VLA pipeline, hardware stack, and sim-to-real workflow
+- **FR-005**: System MUST provide a complete capstone project tutorial for a simulated humanoid that follows voice commands, navigates obstacles, and manipulates objects
+- **FR-006**: System MUST align all technical claims with official documentation from ROS 2, Isaac, Gazebo, Unity, Jetson, and RealSense
+- **FR-007**: System MUST ensure content is written at Flesch-Kincaid grade 10–12 reading level for appropriate comprehension
+- **FR-008**: System MUST provide hardware recommendations that reflect realistic 2024–2025 pricing for Jetson Orin Nano/NX and related components
+- **FR-009**: System MUST ensure all examples run on the specified software stack (Ubuntu 22.04 LTS, ROS 2 Humble/Iron, Jetson Orin Nano/NX, Gazebo Fortress/Garden, Isaac Sim 4.x)
+- **FR-010**: System MUST avoid vendor-specific marketing language and maintain educational neutrality
+- **FR-011**: System MUST be deployable as static content to GitHub Pages or similar static hosting platform
 
 ### Non-Functional Requirements
 
-- **NFR-001**: System MUST support 1000+ concurrent users with page load times under 3 seconds
-- **NFR-002**: User data MUST be retained for 2 years after account inactivity, with clear privacy policy and data export capabilities
-- **NFR-003**: Platform MUST support WCAG 2.1 AA compliance for accessibility, including screen readers and keyboard navigation
+- **NFR-001**: Platform MUST support WCAG 2.1 AA compliance for accessibility, including screen readers and keyboard navigation
+- **NFR-002**: System MUST support page load times under 3 seconds on standard internet connections
 
 ### Key Entities
 
-- **Chapter**: A self-contained unit of learning content covering specific Physical AI or robotics concepts
-- **Code Example**: A runnable code snippet that demonstrates the concepts discussed in a chapter
-- **Diagram**: A visual representation of architecture, workflows, or system interactions
-- **Capstone Project**: An integrated project that combines concepts from multiple chapters into a comprehensive humanoid robot application
-- **User**: An authenticated account representing a student, educator, or developer with tracked learning progress and preferences
+- **Course Content**: Educational material covering Physical AI, ROS 2, simulation, perception, and VLA systems; organized into chapters with tutorials, exercises, and architecture diagrams
+- **Student Learning Path**: Structured progression through fundamental concepts to advanced applications, including setup instructions, hands-on exercises, and capstone project implementation
+- **Technical Workflows**: End-to-end processes for ROS 2 development, Gazebo simulation, Isaac perception, and conversational humanoid integration that students can reproduce
+- **Capstone Project**: Comprehensive implementation of a simulated humanoid robot with voice command recognition, obstacle navigation, and object manipulation capabilities
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: 100% of students can complete the ROS 2 fundamentals chapter and run basic code examples successfully
-- **SC-002**: Textbook contains minimum 10 chapters with 800-1500 words each, covering all specified topics (ROS 2, Gazebo, Unity, Isaac, VLA, Capstone)
-- **SC-003**: 100% of code examples in the textbook are verified to run in ROS 2 Humble or Iron environments
-- **SC-004**: Textbook builds successfully on GitHub Pages with no warnings or errors
-- **SC-005**: 90% of educators find the textbook structure appropriate for course curriculum planning
-- **SC-006**: Capstone project successfully demonstrates all required capabilities: voice commands, navigation, object identification, and manipulation
-- **SC-007**: All technical claims are verified against official documentation sources with no hallucinations
+- **SC-001**: Students can successfully complete the ROS 2 package creation tutorial and run example code within 2 hours of starting
+- **SC-002**: Students can implement the Gazebo simulation workflow and run a basic physics simulation with a robot model in under 3 hours
+- **SC-003**: Students can complete the Isaac perception pipeline tutorial and demonstrate object detection in simulation with at least 80% accuracy
+- **SC-004**: Students can reproduce the capstone project (voice-controlled humanoid with navigation and manipulation) successfully in 8-12 hours of guided work
+- **SC-005**: 90% of students report that the content is appropriately challenging for Flesch-Kincaid grade 10–12 level
+- **SC-006**: All technical claims in the book are verified against official documentation with 100% alignment
+- **SC-007**: Students can reproduce all hands-on exercises on the specified software stack (Ubuntu 22.04 LTS, ROS 2 Humble/Iron, etc.) with 95% success rate

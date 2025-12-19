@@ -1,62 +1,19 @@
 {
-  "name": "physical-ai-humanoid-robotics-textbook",
+  "name": "physical-ai-humanoid-robotics-project",
   "version": "1.0.0",
-  "description": "A Docusaurus-based textbook on Physical AI & Humanoid Robotics",
-  "private": true,
+  "description": "Physical AI & Humanoid Robotics Project with Docusaurus frontend",
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:content": "markdownlint \"**/*.md\" \"**/*.mdx\"",
-    "lint:content:fix": "markdownlint \"**/*.md\" \"**/*.mdx\" --fix",
-    "format": "prettier --write ."
+    "frontend": "cd frontend && npm run start",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:serve": "cd frontend && npm run serve",
+    "frontend:deploy": "cd frontend && npm run deploy",
+    "frontend:swizzle": "cd frontend && npm run swizzle",
+    "frontend:clear": "cd frontend && npm run clear",
+    "frontend:typecheck": "cd frontend && npm run typecheck",
+    "frontend:lint": "cd frontend && npm run lint",
+    "frontend:format": "cd frontend && npm run format"
   },
-  "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@axe-core/react": "^4.11.0",
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "@typescript-eslint/eslint-plugin": "^8.48.1",
-    "@typescript-eslint/parser": "^8.48.1",
-    "eslint": "^9.39.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "markdownlint-cli": "^0.46.0",
-    "prettier": "^3.7.4",
-    "typescript": "~5.6.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=20.0"
-  }
+  "keywords": ["docusaurus", "textbook", "robotics", "ai", "humanoid"],
+  "author": "",
+  "license": "MIT"
 }
